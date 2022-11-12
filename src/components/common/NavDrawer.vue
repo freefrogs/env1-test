@@ -39,7 +39,6 @@ export default {
       }
     },
     currentRoute () {
-      console.log()
       return this.$route.name
     }
   }

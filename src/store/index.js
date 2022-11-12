@@ -8,7 +8,10 @@ const getDefaultState = () => {
     isNavActive: false,
     searchWord: '',
     categories: [],
-    checkedCategories: []
+    checkedCategories: [],
+    apis: [],
+    page: 1,
+    pageAmount: 0
   }
 }
 export default new Vuex.Store({
@@ -27,6 +30,15 @@ export default new Vuex.Store({
     },
     checkedCategories (state) {
       return state.data.checkedCategories
+    },
+    apis (state) {
+      return state.data.apis
+    },
+    filteredApis (state) {
+      return state.data.apis.filter(api => {
+        const regex = new RegExp(state.data.searchWord.trim(), 'ig')
+        return api.API.match(regex) && state.data.checkedCategories.includes(api.Category)
+      })
     }
   },
   mutations: {
@@ -50,7 +62,14 @@ export default new Vuex.Store({
     },
     setCheckedCategories (state, val) {
       const categories = state.data.checkedCategories
-      state.data.checkedCategories = categories.includes(val) ? categories.filter(el => el !== val) : categories.push(val)
+      state.data.checkedCategories = categories.includes(val) ? categories.filter(el => el !== val) : [...categories, val]
+    },
+    initApis (state, val) {
+      const newVal = val.map((el, index) => {
+        el.id = index
+        return el
+      })
+      state.data.apis = newVal
     }
   },
   actions: {

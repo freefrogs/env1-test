@@ -22,11 +22,11 @@ export default {
     }
   },
   computed: {
-    activeCategories () {
+    checkedCategories () {
       return this.$store.getters.checkedCategories
     },
     active () {
-      return this.activeCategories.includes(this.label)
+      return this.checkedCategories.includes(this.label)
     }
   },
   methods: {
