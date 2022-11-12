@@ -34,7 +34,9 @@ export default {
       get () {
         return this.$store.getters.isNavActive
       },
-      set (val) { this.$store.commit('setNavState', val) }
+      set (val) {
+        this.$store.commit('setNavState', val)
+      }
     },
     currentRoute () {
       console.log()

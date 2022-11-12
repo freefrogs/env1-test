@@ -16,7 +16,7 @@
       class="common__btn"
     >
       <v-btn
-        class="ma-6"
+        class="ma-6 white--text"
         color="deep-purple"
       >
         Search for APIs

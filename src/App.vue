@@ -26,6 +26,7 @@
           href="https://freefrogs.github.io/Portfolio/#/"
           target="_blank"
           rel="noopener noreferrer"
+          class="white--text"
         > freefrogs</a>
       </v-col>
     </v-footer>
@@ -52,10 +53,6 @@ export default {
 .v-application {
   a {
     text-decoration: none;
-    color: #fff;
-  }
-  .v-btn {
-    color: #fff;
   }
 }
 </style>
