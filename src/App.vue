@@ -12,6 +12,23 @@
     <v-main>
       <router-view/>
     </v-main>
+    <v-footer
+      color="deep-purple"
+      padless
+    >
+      <v-col
+        class="purple-deep text-center white--text"
+        cols="12"
+      >
+        {{ new Date().getFullYear() }}
+        created by
+        <a
+          href="https://freefrogs.github.io/Portfolio/#/"
+          target="_blank"
+          rel="noopener noreferrer"
+        > freefrogs</a>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
@@ -30,3 +47,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.v-application {
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .v-btn {
+    color: #fff;
+  }
+}
+</style>
