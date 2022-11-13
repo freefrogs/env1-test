@@ -2,15 +2,14 @@
   <div>
     <v-card
       shaped
-      class="ma-10 pa-5 single-api-view"
+      class="my-10 pa-3 single-api-view"
       v-if="api"
     >
-      <div class="d-flex justify-space-between align-center">
+      <div class="d-flex justify-space-between align-center flex-column flex-md-row">
         <v-card-title class="text-h4">{{ api.API }}</v-card-title>
         <v-chip
           class="white--text"
           color="deep-purple"
-          large
         >
           {{ api.Category }}
         </v-chip>

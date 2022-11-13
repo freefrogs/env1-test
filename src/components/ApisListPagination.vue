@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="totalPaginationPages"
-    class="text-center ma-5"
+    class="text-center my-5"
   >
     <v-pagination
       v-model="page"

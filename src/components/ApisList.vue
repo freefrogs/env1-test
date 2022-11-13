@@ -29,7 +29,9 @@ export default {
 
 <style lang="scss">
   .apis-list {
-    width: 80%;
+    @media screen and (min-width: 1000px) {
+      width: 80%;
+    }
     margin: 0 auto;
   }
 </style>

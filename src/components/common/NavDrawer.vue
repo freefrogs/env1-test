@@ -2,12 +2,13 @@
   <v-navigation-drawer
       v-model="isDrawerActive"
       absolute
-      bottom
+      top
       temporary
     >
       <v-list
         nav
         dense
+        class="nav__list"
       >
         <v-list-item>
           <router-link
@@ -64,6 +65,9 @@ export default {
       color: #673AB7;
       font-weight: 800;
     }
+  }
+  .nav__list {
+    height: 100vh;
   }
 }
 </style>
