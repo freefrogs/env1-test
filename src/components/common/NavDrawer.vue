@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import api from '@/services/api'
+
 export default {
   computed: {
     isDrawerActive: {
@@ -40,6 +42,14 @@ export default {
     },
     currentRoute () {
       return this.$route.name
+    }
+  },
+  async mounted () {
+    try {
+      const res = await api.get('/entries')
+      this.$store.commit('initApis', res.data.entries)
+    } catch (err) {
+      console.error(err)
     }
   }
 }

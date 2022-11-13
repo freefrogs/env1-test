@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import api from '@/services/api'
 import ApiCard from './ApiCard.vue'
 import ApisListPagination from './ApisListPagination.vue'
 
@@ -23,14 +22,6 @@ export default {
     },
     currentPageData () {
       return this.$store.getters.currentPageData
-    }
-  },
-  async mounted () {
-    try {
-      const res = await api.get('/entries')
-      this.$store.commit('initApis', res.data.entries)
-    } catch (err) {
-      console.error(err)
     }
   }
 }
