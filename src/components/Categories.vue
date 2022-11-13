@@ -17,6 +17,7 @@
         Check All Categories
       </v-chip>
     </div>
+    <p v-if="!categories.length">Categories are not available...</p>
     <category-chip v-for="category in categories" :key="category" :label="category" />
   </div>
 </template>

@@ -10,8 +10,7 @@ const getDefaultState = () => {
     categories: [],
     checkedCategories: [],
     apis: [],
-    page: 1,
-    pageAmount: 0
+    currentPaginationPage: 1
   }
 }
 export default new Vuex.Store({
@@ -39,6 +38,17 @@ export default new Vuex.Store({
         const regex = new RegExp(state.data.searchWord.trim(), 'ig')
         return api.API.match(regex) && state.data.checkedCategories.includes(api.Category)
       })
+    },
+    totalPaginationPages (state, getters) {
+      return getters.filteredApis.length ? Math.ceil(getters.filteredApis.length / 10) : 0
+    },
+    currentPaginationPage (state) {
+      return state.data.currentPaginationPage
+    },
+    currentPageData (state, getters) {
+      const start = state.data.currentPaginationPage === 1 ? 0 : (state.data.currentPaginationPage - 1) * 10
+      const end = state.data.currentPaginationPage * 10 > getters.filteredApis.length ? getters.filteredApis.length : state.data.currentPaginationPage * 10
+      return getters.filteredApis.slice(start, end)
     }
   },
   mutations: {
@@ -47,18 +57,22 @@ export default new Vuex.Store({
     },
     setSearchWord (state, val) {
       state.data.searchWord = val
+      state.data.currentPaginationPage = 1
     },
     setCategories (state, val) {
       state.data.categories = val
+      state.data.currentPaginationPage = 1
     },
     initCheckedCategories (state, val) {
       state.data.checkedCategories = val
     },
     clearCategories (state) {
       state.data.checkedCategories = []
+      state.data.currentPaginationPage = 1
     },
     checkAllCategories (state) {
       state.data.checkedCategories = state.data.categories
+      state.data.currentPaginationPage = 1
     },
     setCheckedCategories (state, val) {
       const categories = state.data.checkedCategories
@@ -70,10 +84,9 @@ export default new Vuex.Store({
         return el
       })
       state.data.apis = newVal
+    },
+    setCurrentPaginationPage (state, val) {
+      state.data.currentPaginationPage = val
     }
-  },
-  actions: {
-  },
-  modules: {
   }
 })

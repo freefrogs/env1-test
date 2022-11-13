@@ -1,18 +1,28 @@
 <template>
   <div class="apis-list mt-10">
-    <api-card v-for="api in apis" :key="api.id" :api="api" />
+    <p v-if="!filteredApis.length && !api.length">Data is not available...</p>
+    <p v-else-if="!filteredApis.length && api.length">No APIs that meet the assumption...</p>
+    <api-card v-for="api in currentPageData" :key="api.id" :api="api" />
+    <apis-list-pagination />
   </div>
 </template>
 
 <script>
 import api from '@/services/api'
 import ApiCard from './ApiCard.vue'
+import ApisListPagination from './ApisListPagination.vue'
 
 export default {
-  components: { ApiCard },
+  components: { ApiCard, ApisListPagination },
   computed: {
-    apis () {
+    filteredApis () {
       return this.$store.getters.filteredApis
+    },
+    api () {
+      return this.$store.getters.apis
+    },
+    currentPageData () {
+      return this.$store.getters.currentPageData
     }
   },
   async mounted () {
